@@ -26,6 +26,7 @@ class FastImagePreloaderModule extends ReactContextBaseJavaModule {
         return REACT_CLASS;
     }
 
+    @ReactMethod
     public void createPreloader(Promise promise) {
         promise.resolve(preloaders++);
     }
