@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import {
     View,
     Image,
-    NativeModules,
     requireNativeComponent,
     ViewPropTypes,
     StyleSheet,
 } from 'react-native'
-
-const FastImageViewNativeModule = NativeModules.FastImageView
+import preloaderManager from './preloaderManager'
 
 class FastImage extends Component {
     setNativeProps(nativeProps) {
@@ -104,8 +102,8 @@ FastImage.cacheControl = {
     cacheOnly: 'cacheOnly',
 }
 
-FastImage.preload = sources => {
-    FastImageViewNativeModule.preload(sources)
+FastImage.preload = (sources, onProgress, onComplete) => {
+    preloaderManager.preload(sources, onProgress, onComplete)
 }
 
 FastImage.defaultProps = {
